@@ -1,30 +1,115 @@
-\begin{titlepage}
-  \begin{center}
-  \includegraphics[scale=1.20]{img/fhdw.jpg}\\
-  \ort\\
-  \vspace{.7cm}
-  \large{\bfseries\dokumententyp}
-  %~\vspace{.1cm}\\
-  \LARGE{\dokumententitel}
-  ~\vspace{.1cm}\\
-  \large{
-  Prüfer:\vspace{1mm}\\
-  \dokumentenpruefer
-  \vspace{0.7cm}
-  Verfasser:\\\vspace{1mm}
-  \dokumentenautor\\
-  \dokumentenautoradress
-  \begin{center}
-  \begin{tabular}{rcl}
-  Matrikelnummer &:& \matnummer\\
-  \vspace{0cm}\\
-  Studiengang &:& \studiengang \\
-  Spezialisierungsbereich &:& \spezialisierungsbereich \\
-  \end{tabular}
-  \end{center}
-  % \vspace{.1cm}
-  Abgabetermin:\\
-  \abgabedatum
-  }
-  \end{center}
-  \end{titlepage}
+\input{config/Config}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Parameter - Hier auf die eigene Arbeit anpassen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\dokumententyp}{Praxisarbeit}
+\newcommand{\abgabedatum}{\today}
+\newcommand{\ort}{Bergisch Gladbach}
+\newcommand{\koorperationsunternehmen}{Bayer AG}
+\newcommand{\dokumententitel}{Digitale Transformation eines Pharma-Produktionsprozeses mittels Machine Learning und Life-Cycle Management durch Model Monitoring}
+\newcommand{\studienvertiefung}{Cyber Security}
+\newcommand{\dokumentenautor}{Tobias Polley}
+\newcommand{\dokumentenautoradress}{Gutenbergstraße 5\\51469 Bergisch Gladbach}
+\newcommand{\dokumentenpruefer}{Prof. Dr. Seifert}
+\newcommand{\studiengang}{Wirtschaftsinformatik}
+\newcommand{\spezialisierungsbereich}{Cyber Security}
+\newcommand{\matnummer}{100853}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  pdftitle=\dokumententitel,
+  pdfauthor=\dokumentenautor
+}
+
+\begin{document}
+
+% Römische Seitennummerierung
+\pagenumbering{Roman}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Titelseite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{chapter/Titelseite}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Draft-Einstellungen
+%%
+%% Für die finale Version auskommentieren!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \fancyhead[L]{\color{red} Stand: \today~-~\currenttime}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Verzeichnisse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Sperrvermerk
+\include{chapter/Sperrvermerk}
+
+% Inhaltsverzeichnis
+\tableofcontents\newpage
+
+% Glossar
+\renewcommand{\glossarypreamble}{\label{glossary}}
+\printglossary[style=long, title=Glossar, toctitle=Glossar] \newpage
+
+% Abkürzungsverzeichnis
+\renewcommand{\glossarypreamble}{\label{acronyms}}
+\printglossary[type=acronym, style=long, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis] \newpage
+
+\setcounter{table}{0} % printglossary erzeugt eine Tabelle, die die Nummerierung der "echten" Tabellen durcheinander bringt.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Verzeichnisse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Abbildungsverzeichnis
+\fancyhead[R]{\listfigurename}
+\listoffigures\newpage
+
+% Quelltextverzeichnis
+\fancyhead[R]{\lstlistlistingname}
+\lstlistoflistings\newpage
+
+% Kapitelüberschriften für den Arbeitstext
+\fancyhead[R]{\leftmark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Inhalt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Arabische Seitennummerierung
+\pagenumbering{arabic}
+
+\include{chapter/Executive Summary}
+
+\include{chapter/Einleitung}
+
+\include{chapter/Einführung in die Künstliche Intelligenz}
+
+\include{chapter/Bewertung von Machine Learning Modellen}
+
+\include{chapter/Implementation des Projekts}
+
+\include{chapter/Schlussfolgerung}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{chapter/Anhang}
+
+\include{chapter/Quellenverzeichnis}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{chapter/Ehrenwoertliche_Erklaerung}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
