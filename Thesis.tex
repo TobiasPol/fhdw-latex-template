@@ -1,176 +1,101 @@
-\documentclass{mimosis}
+% !TEX root = Thesis.tex
+\input{config/Config}
 
-\usepackage{metalogo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Parameter - Hier auf die eigene Arbeit anpassen
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Some of my favourite personal adjustments
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% These are the adjustments that I consider necessary for typesetting
-% a nice thesis. However, they are *not* included in the template, as
-% I do not want to force you to use them.
+\newcommand{\dokumententyp}{Praxisarbeit}
+\newcommand{\abgabedatum}{\today}
+\newcommand{\ort}{Bergisch Gladbach}
+\newcommand{\koorperationsunternehmen}{Bayer AG}
+\newcommand{\dokumententitel}{Digitale Transformation eines Pharma-Produktionsprozeses mittels Machine Learning und Life-Cycle Management durch Model Monitoring}
+\newcommand{\studienvertiefung}{Cyber Security}
+\newcommand{\dokumentenautor}{Tobias Polley}
+\newcommand{\dokumentenautoradress}{Gutenbergstraße 5\\51469 Bergisch Gladbach}
+\newcommand{\dokumentenpruefer}{Prof. Dr. Seifert}
+\newcommand{\studiengang}{Wirtschaftsinformatik}
+\newcommand{\spezialisierungsbereich}{Cyber Security}
+\newcommand{\matnummer}{100853}
 
-% This ensures that I am able to typeset bold font in table while still aligning the numbers
-% correctly.
-\usepackage{etoolbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Hyperlinks & bookmarks
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\usepackage[%
-  colorlinks = true,
-  citecolor  = RoyalBlue,
-  linkcolor  = RoyalBlue,
-  urlcolor   = RoyalBlue,
-  unicode,
-  ]{hyperref}
-
-\usepackage{bookmark}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Bibliography
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% I like the bibliography to be extremely plain, showing only a numeric
-% identifier and citing everything in simple brackets. The first names,
-% if present, will be initialized. DOIs and URLs will be preserved.
-
-\usepackage[%
-  autocite     = plain,
-  backend      = biber,
-  doi          = true,
-  url          = true,
-  giveninits   = true,
-  hyperref     = true,
-  maxbibnames  = 99,
-  maxcitenames = 99,
-  sortcites    = true,
-  style        = numeric,
-  ]{biblatex}
-
-\input{bibliography-mimosis}
-\addbibresource{Thesis.bib}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Fonts
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\ifxetexorluatex
-  \usepackage{unicode-math}
-  \setmainfont{EB Garamond}
-  \setmathfont{Garamond Math}
-
-  % Load some missing symbols from another font.
-  \setmathfont{STIX Two Math}[%
-    range = {
-      \sharp,
-      \natural,
-      \flat,
-      \clubsuit,
-      \spadesuit,
-      \checkmark
-    }
-  ]
-  \setmonofont[Scale=MatchLowercase]{Source Code Pro}
-\else
-  \usepackage[lf]{ebgaramond}
-  \usepackage[oldstyle,scale=0.7]{sourcecodepro}
-  \singlespacing
-\fi
-
-\newacronym[description={Principal component analysis}]{PCA}{PCA}{principal component analysis}
-\newacronym                                            {SNF}{SNF}{Smith normal form}
-\newacronym[description={Topological data analysis}]   {TDA}{TDA}{topological data analysis}
-
-\newglossaryentry{LaTeX}{%
-  name        = {\LaTeX},
-  description = {A document preparation system},
-  sort        = {LaTeX},
+\hypersetup{
+  colorlinks=false,
+  pdfborder={0 0 0},
+  pdftitle=\dokumententitel,
+  pdfauthor=\dokumentenautor
 }
-
-\newglossaryentry{Real numbers}{%
-  name        = {$\real$},
-  description = {The set of real numbers},
-  sort        = {Real numbers},
-}
-
-\makeindex
-\makeglossaries
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Ordinals
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\makeatletter
-\@ifundefined{st}{%
-  \newcommand{\st}{\textsuperscript{\textup{st}}\xspace}
-}{}
-\@ifundefined{rd}{%
-  \newcommand{\rd}{\textsuperscript{\textup{rd}}\xspace}
-}{}
-\@ifundefined{nd}{%
-  \newcommand{\nd}{\textsuperscript{\textup{nd}}\xspace}
-}{}
-\makeatother
-
-\renewcommand{\th}{\textsuperscript{\textup{th}}\xspace}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Incipit
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\title{\texttt{latex-mimosis}}
-\subtitle{A minimal, modern \LaTeX{} package for typesetting your thesis}
-\author{Bastian Rieck}
 
 \begin{document}
 
-\frontmatter
-  \include{Sources/Title}
-  \include{Sources/Abstract}
+% Römische Seitennummerierung
+\pagenumbering{Roman}
 
-  \tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Titelseite
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\mainmatter
+\input{chapter/Titelseite}
 
-  \part[A good part]{%
-    A good part\\
-    %
-    \vspace{1cm}
-    %
-    \begin{minipage}[l]{\textwidth}
-    %
-    \textnormal{%
-      \normalsize
-      %
-      \begin{singlespace*}
-        \onehalfspacing
-        %
-        You can also use parts in order to partition your great work
-        into larger `chunks'. This involves some manual adjustments in
-        terms of the layout, though.
-      \end{singlespace*}
-    }
-    \end{minipage}
-  }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Draft-Einstellungen
+%%
+%% Für die finale Version auskommentieren!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \fancyhead[L]{\color{red} Stand: \today~-~\currenttime}
 
-  \include{Sources/Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Verzeichnisse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% This ensures that the subsequent sections are being included as root
-% items in the bookmark structure of your PDF reader.
-\bookmarksetup{startatroot}
-\backmatter
 
-  \begingroup
-    \let\clearpage\relax
-    \glsaddall
-    \printglossary[type=\acronymtype]
-    \newpage
-    \printglossary
-  \endgroup
+% Sperrvermerk
+\include{chapter/Sperrvermerk}
 
-  \printindex
-  \printbibliography
+% Inhaltsverzeichnis
+\tableofcontents\newpage
+
+% Glossar
+\renewcommand{\glossarypreamble}{\label{glossary}}
+\printglossary[style=long, title=Glossar, toctitle=Glossar] \newpage
+
+% Abkürzungsverzeichnis
+\renewcommand{\glossarypreamble}{\label{acronyms}}
+\printglossary[type=acronym, style=long, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis] \newpage
+
+\setcounter{table}{0} % printglossary erzeugt eine Tabelle, die die Nummerierung der "echten" Tabellen durcheinander bringt.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Verzeichnisse
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Abbildungsverzeichnis
+\fancyhead[R]{\listfigurename}
+\listoffigures\newpage
+
+% Quelltextverzeichnis
+\fancyhead[R]{\lstlistlistingname}
+\lstlistoflistings\newpage
+
+% Kapitelüberschriften für den Arbeitstext
+\fancyhead[R]{\leftmark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Inhalt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Arabische Seitennummerierung
+\pagenumbering{arabic}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
